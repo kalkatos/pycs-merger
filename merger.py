@@ -8,14 +8,11 @@ namespace_must_have = ""
 
 def clean_bracket_str(dirty_str: str) -> str:
     clean_str = ""
-    bracket_counter = -1
+    bracket_counter = 0
     for c in dirty_str:
         clean_str += c
         if c == '{':
-            if bracket_counter == -1:
-                bracket_counter = 1
-            else:
-                bracket_counter += 1
+            bracket_counter += 1
         elif c == '}':
             bracket_counter -= 1
             if bracket_counter == 0:
