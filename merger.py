@@ -80,10 +80,17 @@ if len(args) <= 1:
     print("Need to enter a folder with the code.")
     exit()
 
+if args[1] == "-help" or args[1] == "-h":
+    print("Merger arguments use:\n<source_folder> [<destination_file_path>] [-x <namespace_to_be_ignored>] [-m <must_have_this_namespace>]")
+    exit()
+
 path = args[1]
-result = "merged_output.cs"
+result = os.path.join(path, "merged_output.cs")
 if len(args) > 2:
-    result = args[2]
+    if os.path.isdir(args[2]):
+        result = os.path.join(args[2], "merged_output.cs")
+    else:
+        result = args[2]
 
 if len(args) > 3:
     for index in range(3, len(args)):
